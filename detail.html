@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Détails de l'API</title>
+  <link rel="stylesheet" href="detail.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="apiTitle">Détails de l'API</h1>
+      <div class="actions">
+        <button id="exportButton" class="btn">Exporter</button>
+        <button id="closeButton" class="btn">Fermer</button>
+      </div>
+    </header>
+    
+    <div class="api-details">
+      <div class="detail-section">
+        <h2>Informations générales</h2>
+        <div class="detail-content">
+          <div class="detail-item">
+            <div class="detail-label">URL:</div>
+            <div id="apiUrl" class="detail-value"></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Méthode:</div>
+            <div id="apiMethod" class="detail-value"></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Timestamp:</div>
+            <div id="apiTimestamp" class="detail-value"></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Code de statut:</div>
+            <div id="apiStatus" class="detail-value"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="detail-section">
+        <h2>En-têtes de requête</h2>
+        <div id="requestHeaders" class="detail-content code-block"></div>
+      </div>
+      
+      <div class="detail-section">
+        <h2>Corps de la requête</h2>
+        <div id="requestBody" class="detail-content code-block"></div>
+      </div>
+      
+      <div class="detail-section">
+        <h2>En-têtes de réponse</h2>
+        <div id="responseHeaders" class="detail-content code-block"></div>
+      </div>
+      
+      <div class="detail-section">
+        <h2>Corps de la réponse</h2>
+        <div id="responseBody" class="detail-content code-block"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="detail.js"></script>
+</body>
+</html> 

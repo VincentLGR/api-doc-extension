@@ -1,0 +1,263 @@
+/* Styles de base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  min-height: 300px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  padding: 15px;
+}
+
+h1 {
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 15px 0 10px 0;
+  color: #2c3e50;
+}
+
+/* Panneau de contrôle */
+.control-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  padding: 8px 12px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#toggleButton {
+  background-color: #2ecc71;
+}
+
+#toggleButton.active {
+  background-color: #e74c3c;
+}
+
+#clearButton {
+  background-color: #e74c3c;
+}
+
+#exportButton {
+  background-color: #f39c12;
+}
+
+.doc-btn {
+  background-color: #9b59b6;
+  grid-column: span 2; /* Prend toute la largeur */
+}
+
+/* Panneau de statut */
+.status-panel {
+  background-color: #ecf0f1;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Liste des APIs */
+.api-list {
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.api-item {
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.api-item:hover {
+  background-color: #f0f0f0;
+}
+
+.api-url {
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.api-details {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #666;
+}
+
+.api-timestamp, .api-status, .api-type {
+  margin-right: 10px;
+}
+
+.api-status {
+  color: #3498db;
+}
+
+.api-type {
+  font-style: italic;
+}
+
+.api-method {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.method-get {
+  background-color: #61affe;
+  color: white;
+}
+
+.method-post {
+  background-color: #49cc90;
+  color: white;
+}
+
+.method-put {
+  background-color: #fca130;
+  color: white;
+}
+
+.method-delete {
+  background-color: #f93e3e;
+  color: white;
+}
+
+.method-patch {
+  background-color: #50e3c2;
+  color: white;
+}
+
+.method-options {
+  background-color: #c8c8c8;
+  color: white;
+}
+
+/* Options de documentation */
+.doc-options {
+  background-color: white;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.option-group {
+  margin-bottom: 12px;
+}
+
+.option-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.option-group input[type="text"],
+.option-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.option-group.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#generateDocButton {
+  background-color: #9b59b6;
+}
+
+.btn.cancel {
+  background-color: #7f8c8d;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Message d'erreur */
+.error-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+/* Styles pour l'état de chargement */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* État vide */
+.no-apis {
+  text-align: center;
+  padding: 20px;
+  color: #7f8c8d;
+  font-style: italic;
+} 

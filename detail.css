@@ -1,0 +1,165 @@
+/* Styles de base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #2c3e50;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.btn {
+  padding: 8px 12px;
+  margin-left: 8px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+#exportButton {
+  background-color: #f39c12;
+}
+
+#closeButton {
+  background-color: #e74c3c;
+}
+
+/* Détails de l'API */
+.api-details {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.detail-section {
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+}
+
+.detail-content {
+  margin-top: 10px;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.detail-label {
+  font-weight: bold;
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.detail-value {
+  flex-grow: 1;
+  word-break: break-all;
+}
+
+/* Formatage du code */
+.code-block {
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  padding: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* Méthodes HTTP */
+.method {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.method-get {
+  background-color: #61affe;
+}
+
+.method-post {
+  background-color: #49cc90;
+}
+
+.method-put {
+  background-color: #fca130;
+}
+
+.method-delete {
+  background-color: #f93e3e;
+}
+
+.method-patch {
+  background-color: #50e3c2;
+}
+
+.method-options {
+  background-color: #c8c8c8;
+}
+
+/* Statut HTTP */
+.status {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.status-2xx {
+  background-color: #49cc90;
+}
+
+.status-3xx {
+  background-color: #fca130;
+}
+
+.status-4xx, .status-5xx {
+  background-color: #f93e3e;
+} 

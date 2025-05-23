@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation Generator</title>
+  <style>
+    body {
+      width: 400px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .status {
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .status.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .status.inactive {
+      background-color: #f44336;
+      color: white;
+    }
+    .api-list {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+    }
+    .api-item {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    .api-item:last-child {
+      border-bottom: none;
+    }
+    .api-item input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .api-info {
+      flex-grow: 1;
+    }
+    .api-method {
+      font-weight: bold;
+      margin-right: 5px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    .method-get { background-color: #61affe; color: white; }
+    .method-post { background-color: #49cc90; color: white; }
+    .method-put { background-color: #fca130; color: white; }
+    .method-delete { background-color: #f93e3e; color: white; }
+    .method-patch { background-color: #50e3c2; color: white; }
+    .api-path {
+      color: #666;
+      font-family: monospace;
+      font-size: 12px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    button.primary {
+      background-color: #2196F3;
+      color: white;
+    }
+    button.secondary {
+      background-color: #9E9E9E;
+      color: white;
+    }
+    button:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+    .select-all {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .error-message {
+      background-color: #ffebee;
+      color: #c62828;
+      padding: 10px;
+      border-radius: 4px;
+      margin: 10px 0;
+      display: none;
+    }
+    .error-message.visible {
+      display: block;
+    }
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 3px solid #3498db;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .download-section {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #e8f5e9;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .download-section.visible {
+      display: block;
+    }
+
+    .download-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .download-button:hover {
+      background-color: #45a049;
+    }
+
+    .status-message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .status-message.info {
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .status-message.success {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status-message.error {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>API Documentation Generator</h2>
+      <div id="status" class="status inactive">Inactif</div>
+    </div>
+    
+    <div class="select-all">
+      <button id="selectAll" class="secondary">Tout sélectionner</button>
+      <button id="deselectAll" class="secondary">Tout désélectionner</button>
+    </div>
+    
+    <div id="apiList" class="api-list">
+      <!-- Les APIs seront ajoutées ici dynamiquement -->
+    </div>
+    
+    <div class="actions">
+      <button id="toggleMonitoring" class="primary">Démarrer la capture</button>
+      <button id="generateDoc" class="primary" disabled>
+        <span id="generateIcon"></span>
+        <span id="generateText">Générer la documentation</span>
+      </button>
+      <button id="clearApis" class="secondary">Effacer</button>
+    </div>
+
+    <div id="statusMessage" class="status-message" style="display: none;"></div>
+
+    <div id="downloadSection" class="download-section">
+      <div id="downloadStatus" class="status-message info">
+        Documentation générée avec succès !
+      </div>
+      <button id="downloadButton" class="download-button">
+        Télécharger la documentation
+      </button>
+    </div>
+
+    <div id="errorMessage" class="error-message"></div>
+  </div>
+
+  <script src="doc-generator.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html> 
